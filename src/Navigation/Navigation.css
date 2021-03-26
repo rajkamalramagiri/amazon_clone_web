@@ -1,0 +1,49 @@
+.navigation {
+  background-color: #042857 !important;
+  display: flex;
+  color: white;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  flex-wrap: wrap;
+  /* max-width: 100%; */
+}
+
+.navigation__logo {
+  width: 100px;
+  margin: 18px 20px 0px;
+}
+
+.navigation_search {
+  flex: 1;
+  padding: 10px;
+  /* border: none; */
+  outline: none;
+  border: transparent;
+  font-family: Arial;
+  font-size: 14x;
+  /* background-color: blue; */
+}
+.navigation_searchIcon {
+  background-color: #cd9042;
+  padding: 5.5px;
+}
+
+.navigation_right_bottom {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.navigation_right_top {
+  font-size: 10px;
+}
+.navigation_right {
+  margin: 10px;
+}
+.nav_count {
+  font-size: 13px;
+  font-weight: 800;
+  margin-left: 0;
+}

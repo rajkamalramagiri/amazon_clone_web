@@ -1,0 +1,30 @@
+.product {
+  margin: 15px;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.product_image {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.product_button {
+  margin-top: 10px;
+  background-color: violet;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  width: 140px;
+  outline: none;
+}
+
+.product_rating {
+  display: flex;
+}
