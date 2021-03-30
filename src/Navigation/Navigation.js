@@ -2,8 +2,10 @@ import React from "react";
 import "./Navigation.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+import { useStateValue } from "../StateProvider";
 
 function Navigation() {
+  const [{ basket, money }] = useStateValue();
   return (
     <div className="navigation">
       <img
@@ -27,7 +29,7 @@ function Navigation() {
         <div className="navigation_right_bottom"> Prime</div>
       </div>
       <ShoppingBasketIcon className="navigation_right" />
-      <div className="navigation_right nav_count">0</div>
+      <div className="navigation_right nav_count">{money}</div>
     </div>
   );
 }
