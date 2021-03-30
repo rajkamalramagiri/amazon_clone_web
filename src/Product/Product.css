@@ -9,6 +9,12 @@
   flex: 1;
   flex-wrap: wrap;
 }
+.flexPrice {
+  display: flex;
+}
+.product__price {
+  font-weight: bold;
+}
 .product_image {
   height: 200px;
   width: 100%;
@@ -17,7 +23,8 @@
 
 .product_button {
   margin-top: 10px;
-  background-color: violet;
+  background-color: #f0c14b;
+
   border: none;
   padding: 5px;
   cursor: pointer;

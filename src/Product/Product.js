@@ -1,12 +1,30 @@
 import React from "react";
 import "./Product.css";
+import { useStateValue } from "../StateProvider";
 
-function Product({ title, price, rating, imageUrl }) {
+function Product({ id, title, price, rating, imageUrl }) {
+  const [{ basket }, dispatch] = useStateValue();
+  const handleClick = () => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+
+      item: {
+        id: id,
+        title: title,
+        image: imageUrl,
+        price: price,
+        rating: rating,
+      },
+    });
+  };
   return (
     <div className="product">
       <div>
         <div>{title}</div>
-        <div>{price}</div>
+        <div className="flexPrice">
+          <span>$</span>
+          <div className="product__price">{price}</div>
+        </div>
         <div className="product_rating">
           {Array(rating)
             .fill()
@@ -16,7 +34,9 @@ function Product({ title, price, rating, imageUrl }) {
         </div>
       </div>
       <img className="product_image" src={imageUrl} />
-      <button className="product_button">Add to Basket</button>
+      <button onClick={handleClick} className="product_button">
+        Add to Basket
+      </button>
     </div>
   );
 }

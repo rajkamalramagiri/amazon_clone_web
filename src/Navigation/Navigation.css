@@ -30,10 +30,14 @@
   background-color: #cd9042;
   padding: 5.5px;
 }
-
+.navigation__checkout {
+  display: flex;
+}
 .navigation_right_bottom {
   font-size: 13px;
   font-weight: 800;
+  color: white;
+  text-decoration: none;
 }
 
 .navigation_right_top {
@@ -41,6 +45,7 @@
 }
 .navigation_right {
   margin: 10px;
+  color: white;
 }
 .nav_count {
   font-size: 13px;
