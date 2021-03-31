@@ -1,19 +1,26 @@
 import React from "react";
-import { useStateValue } from "../StateProvider";
+// import { useStateValue } from "../StateProvider";
 import "./Checkout.css";
+import { connect } from "react-redux";
 
-function Checkout() {
-  const [{ basket }, dispatch] = useStateValue();
+import { removeFromBasket } from "../redux/action";
+
+function Checkout(props) {
+  // const [{ basket }, dispatch] = useStateValue();
   const handleRemove = (item) => {
-    dispatch({
-      type: "REMOVE_FROM_BASKET",
-      item: {
-        id: item.id,
-      },
-    });
+    item = {
+      id: item.id,
+    };
+    props.removeFromBasket(item);
+    // dispatch({
+    //   type: "REMOVE_FROM_BASKET",
+    //   item: {
+    //     id: item.id,
+    //   },
+    // });
   };
 
-  console.log(basket);
+  console.log("basket");
   return (
     <div className="checkout">
       <div className="checkout__letf">
@@ -22,7 +29,7 @@ function Checkout() {
           src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
         />
 
-        {basket.length == 0 ? (
+        {props.basket.length == 0 ? (
           <div>
             <h2> Your shopping cart is empty</h2>
           </div>
@@ -31,7 +38,7 @@ function Checkout() {
             <div className="checkout__header_top">Hello,</div>
             <div className="checkout__subheading">Your shopping Basket</div>
 
-            {basket.map((product) => {
+            {props.basket.map((product) => {
               return (
                 <div className="checkout_products">
                   <div className="checkout_product">
@@ -78,9 +85,12 @@ function Checkout() {
 
       <div className="checkout__right">
         <div className="checkout_subtottal">
-          Subtotal ({basket.length} items):
+          Subtotal ({props.basket.length} items):
           <div className="checkout_subtotal_price">
-            {basket.reduce((acc, item) => (acc = Number(item.price) + acc), 0)}
+            {props.basket.reduce(
+              (acc, item) => (acc = Number(item.price) + acc),
+              0
+            )}
           </div>
         </div>
         <button className="checkout__button">Proceed to Checkout</button>
@@ -89,4 +99,13 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+const mapStateToProps = (state) => {
+  return { basket: state.basket };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeFromBasket: (item) => dispatch(removeFromBasket(item)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

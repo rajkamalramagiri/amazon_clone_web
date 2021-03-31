@@ -1,21 +1,31 @@
 import React from "react";
 import "./Product.css";
-import { useStateValue } from "../StateProvider";
+// import { useStateValue } from "../StateProvider";
+import { connect } from "react-redux";
+import { addToBasket } from "../redux/action";
 
-function Product({ id, title, price, rating, imageUrl }) {
-  const [{ basket }, dispatch] = useStateValue();
+function Product(props) {
+  // const [{ basket }, dispatch] = useStateValue();
+  const { id, title, price, rating, imageUrl } = props;
   const handleClick = () => {
-    dispatch({
-      type: "ADD_TO_BASKET",
-
-      item: {
-        id: id,
-        title: title,
-        image: imageUrl,
-        price: price,
-        rating: rating,
-      },
-    });
+    const item = {
+      id: id,
+      title: title,
+      image: imageUrl,
+      price: price,
+      rating: rating,
+    };
+    props.addToBasket(item);
+    // dispatch({
+    //   type: "ADD_TO_BASKET",
+    //   item: {
+    //     id: id,
+    //     title: title,
+    //     image: imageUrl,
+    //     price: price,
+    //     rating: rating,
+    //   },
+    // });
   };
   return (
     <div className="product">
@@ -41,4 +51,14 @@ function Product({ id, title, price, rating, imageUrl }) {
   );
 }
 
-export default Product;
+const mapStateToProps = (state) => {
+  return { basket: state.basket };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToBasket: (item) => dispatch(addToBasket(item)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

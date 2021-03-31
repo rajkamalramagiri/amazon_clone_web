@@ -2,11 +2,13 @@ import React from "react";
 import "./Navigation.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { useStateValue } from "../StateProvider";
+// import { useStateValue } from "../StateProvider";
+import { connect } from "react-redux";
+
 import { Link } from "react-router-dom";
 
-function Navigation() {
-  const [{ basket, money }] = useStateValue();
+function Navigation({ basket }) {
+  // const [{ basket, money }] = useStateValue();
   console.log(basket);
   return (
     <div className="navigation">
@@ -41,4 +43,8 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return { basket: state.basket };
+};
+
+export default connect(mapStateToProps)(Navigation);

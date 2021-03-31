@@ -8,7 +8,7 @@ const reducer = (state = initialState, action) => {
     case "ADD_TO_BASKET":
       return {
         ...state,
-        basket: [...state.basket, action.item],
+        basket: [...state.basket, action.payload],
       };
       break;
 
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
-        basket: state.basket.filter((prod) => prod.id != action.item.id),
+        basket: state.basket.filter((prod) => prod.id != action.payload.id),
       };
 
       break;
